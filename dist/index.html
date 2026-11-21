@@ -7,8 +7,13 @@
   <meta name="description" content="หารบิลตามที่แต่ละคนสั่ง รวมค่าส่งและส่วนลด คำนวณยอดจ่ายรายคนให้ตรงกับยอดบิลทุกสตางค์">
   <title>หารกัน — บิลเดียว เคลียร์ได้ทุกคน</title>
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=20261121-3">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icon-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="หารกัน">
+  <link rel="stylesheet" href="./style.css?v=offline-1">
   <script type="module" src="./app.js"></script>
+  <script type="module" src="./offline.js"></script>
 </head>
 <body>
   <header class="topbar"><a class="brand" href="./" aria-label="หารกัน หน้าหลัก"><span class="brand-icon">÷</span>หารกัน<span class="brand-en">HARNKAN</span></a><span class="top-note">บิลเดียว เคลียร์ได้ทุกคน</span></header>
@@ -54,6 +59,10 @@
       </div>
       <aside class="summary" aria-labelledby="summary-heading"><div class="receipt"><div class="receipt-header"><span class="receipt-icon" aria-hidden="true">≋</span><span class="eyebrow">สรุปบิลของเรา</span><h2 id="summary-heading">แต่ละคนจ่ายเท่าไหร่?</h2></div><div id="empty-state" class="empty-state"><span aria-hidden="true">฿</span><h3>บิลของคุณเริ่มตรงนี้</h3><p>เพิ่มชื่อและราคาสินค้าที่สั่ง<br>ยอดจ่ายของแต่ละคนจะแสดงที่นี่</p></div><div id="error" class="error" role="status" hidden></div><div id="result" hidden><div class="grand-total"><span>ยอดสุทธิทั้งบิล</span><div><span class="currency">฿</span><strong id="total">0.00</strong></div><span id="total-people"></span></div><div class="breakdown"><div><span>ค่าสินค้ารวม</span><span id="subtotal"></span></div><div><span>ค่าส่ง</span><span id="shipping-total"></span></div><div class="saving"><span>ส่วนลดรวม</span><span id="discount-total"></span></div></div><div id="shares" class="shares"></div><div class="check-line"><span aria-hidden="true">✓</span><span>ยอดรายคนรวมตรงกับยอดบิล</span><strong id="check-total"></strong></div></div><div class="receipt-bottom"><button id="copy" class="primary-button" type="button" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>คัดลอกสรุปไปส่งในกลุ่ม</button><p>จัดสรรเศษสตางค์ให้อัตโนมัติ ยอดรวมไม่ขาดไม่เกิน</p></div></div><p class="privacy">คำนวณบนเครื่องของคุณ ไม่ต้องสมัครสมาชิก</p></aside>
     </div>
+    <section class="offline-card" aria-label="ใช้งานออฟไลน์">
+      <div class="offline-top"><span id="offline-status" role="status">กำลังเตรียมใช้งานออฟไลน์…</span><button id="install-app" class="text-button" type="button" hidden>ติดตั้งแอป</button><button id="update-app" class="text-button" type="button" hidden>อัปเดตแอป</button></div>
+      <details class="offline-help"><summary>เพิ่มแอปไว้ที่หน้าจอหลัก</summary><p><strong>iPhone / iPad:</strong> เปิดเว็บใน Safari แล้วเลือก แชร์ → เพิ่มไปยังหน้าจอโฮม<br><strong>Android:</strong> เปิดเว็บใน Chrome แล้วเลือกเมนู ⋮ → ติดตั้งแอป หรือ เพิ่มลงในหน้าจอหลัก</p><p>เปิดด้วยเน็ตครั้งแรก แล้วรอข้อความ “พร้อมใช้งานออฟไลน์” ก่อนปิดเน็ต ใช้งานซ้ำได้ทั้งคำนวณบิลและเครื่องคิดเลข หากล้างข้อมูลเว็บไซต์ ต้องเปิดด้วยเน็ตเพื่อเตรียมใหม่</p></details>
+    </section>
     <footer>หารกัน <span>·</span> มื้อไหน ๆ ก็เคลียร์ง่าย</footer>
   </main>
   <div id="toast" class="toast" role="status" hidden></div>

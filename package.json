@@ -2,5 +2,5 @@
   "name": "harnkan",
   "private": true,
   "type": "module",
-  "scripts": { "start": "node server.mjs", "test": "node --test" }
+  "scripts": { "start": "node scripts/build-offline.mjs && node server.mjs", "build": "node scripts/build-offline.mjs", "test": "node --test" }
 }
