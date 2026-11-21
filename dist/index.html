@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#6554c0">
+  <meta name="description" content="หารบิลตามที่แต่ละคนสั่ง รวมค่าส่งและส่วนลด คำนวณยอดจ่ายรายคนให้ตรงกับยอดบิลทุกสตางค์">
+  <title>หารกัน — บิลเดียว เคลียร์ได้ทุกคน</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="./" aria-label="หารกัน หน้าหลัก"><span class="brand-icon">÷</span>หารกัน<span class="brand-en">HARNKAN</span></a><span class="top-note">บิลเดียว เคลียร์ได้ทุกคน</span></header>
+  <main>
+    <section class="intro"><div class="eyebrow"><span></span> ตัวช่วยหารบิลของแก๊ง</div><h1>สั่งด้วยกัน<br>จ่ายแค่ส่วนของเรา<span class="spark">✳</span></h1><p>ใส่ยอดของแต่ละคน แล้วให้เราช่วยแบ่งค่าส่งกับส่วนลด</p></section>
+    <div class="workspace">
+      <div class="editor">
+        <section class="card people-card" aria-labelledby="people-heading">
+          <div class="section-head"><div><h2 id="people-heading">ใครสั่งอะไรบ้าง<span id="count" class="count">2 คน</span></h2><p>ใส่ราคารวมก่อนลดของแต่ละคน</p></div></div>
+          <div class="column-labels" aria-hidden="true"><span>ชื่อคนสั่ง</span><span>ราคาสินค้า (บาท)</span></div>
+          <div id="people"></div>
+          <button id="add" class="add-button" type="button"><span>+</span> เพิ่มคนในบิล</button>
+        </section>
+        <section class="card" aria-labelledby="extras-heading"><div class="section-head"><div><h2 id="extras-heading">ค่าส่ง & ส่วนลด</h2><p>ยอดรวมของทั้งออเดอร์</p></div><span class="mini-icon" aria-hidden="true">฿</span></div><div class="extras"><label for="delivery">ค่าส่ง<div class="money-input"><input id="delivery" inputmode="decimal" type="text" maxlength="12" placeholder="0.00" autocomplete="off"><span>฿</span></div></label><label for="discount">ส่วนลดรวม<div class="money-input discount-input"><input id="discount" inputmode="decimal" type="text" maxlength="12" placeholder="0.00" autocomplete="off"><span>฿</span></div></label></div><p class="hint">รวมคูปอง ส่วนลดร้านค้า และส่วนลดค่าส่งไว้ช่องเดียว</p></section>
+        <div class="method"><span class="info-icon" aria-hidden="true">i</span><div><strong>แบ่งตามยอดที่สั่ง ยุติธรรมกับทุกคน</strong><p>ยอดจ่าย = ราคาของคนนั้น ÷ ค่าสินค้ารวม × ยอดสุทธิ<br>ค่าส่งและส่วนลดจึงถูกแบ่งตามสัดส่วนเดียวกัน</p></div></div>
+        <div class="editor-footer"><span id="save-status">บันทึกในเครื่องนี้อัตโนมัติ</span><button id="reset" class="text-button muted" type="button">เริ่มบิลใหม่</button></div>
+      </div>
+      <aside class="summary" aria-labelledby="summary-heading"><div class="receipt"><div class="receipt-header"><span class="receipt-icon" aria-hidden="true">≋</span><span class="eyebrow">สรุปบิลของเรา</span><h2 id="summary-heading">แต่ละคนจ่ายเท่าไหร่?</h2></div><div id="empty-state" class="empty-state"><span aria-hidden="true">฿</span><h3>บิลของคุณเริ่มตรงนี้</h3><p>เพิ่มชื่อและราคาสินค้าที่สั่ง<br>ยอดจ่ายของแต่ละคนจะแสดงที่นี่</p></div><div id="error" class="error" role="status" hidden></div><div id="result" hidden><div class="grand-total"><span>ยอดสุทธิทั้งบิล</span><div><span class="currency">฿</span><strong id="total">0.00</strong></div><span id="total-people"></span></div><div class="breakdown"><div><span>ค่าสินค้ารวม</span><span id="subtotal"></span></div><div><span>ค่าส่ง</span><span id="shipping-total"></span></div><div class="saving"><span>ส่วนลดรวม</span><span id="discount-total"></span></div></div><div id="shares" class="shares"></div><div class="check-line"><span aria-hidden="true">✓</span><span>ยอดรายคนรวมตรงกับยอดบิล</span><strong id="check-total"></strong></div></div><div class="receipt-bottom"><button id="copy" class="primary-button" type="button" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>คัดลอกสรุปไปส่งในกลุ่ม</button><p>จัดสรรเศษสตางค์ให้อัตโนมัติ ยอดรวมไม่ขาดไม่เกิน</p></div></div><p class="privacy">คำนวณบนเครื่องของคุณ ไม่ต้องสมัครสมาชิก</p></aside>
+    </div>
+    <footer>หารกัน <span>·</span> มื้อไหน ๆ ก็เคลียร์ง่าย</footer>
+  </main>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <dialog id="confirm"><form method="dialog"><h2 id="dialog-title">เริ่มบิลใหม่?</h2><p id="dialog-description">ข้อมูลบิลปัจจุบันจะถูกแทนที่</p><div class="dialog-actions"><button value="cancel" class="secondary-button">ยกเลิก</button><button value="confirm" class="primary-button">ยืนยัน</button></div></form></dialog>
+  <dialog id="copy-dialog"><h2>สรุปพร้อมส่ง</h2><p>แตะค้างเพื่อเลือกและคัดลอกข้อความ</p><textarea id="copy-text" readonly aria-label="ข้อความสรุปบิล"></textarea><form method="dialog"><button class="primary-button">ปิด</button></form></dialog>
+</body>
+</html>
