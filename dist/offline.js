@@ -26,12 +26,12 @@ if ('serviceWorker' in navigator && window.isSecureContext) {
   window.addEventListener('online', ready);
   window.addEventListener('offline', ready);
   navigator.serviceWorker.register('./sw.js', { scope: './', updateViaCache: 'none' }).then(registration => {
-    function offerUpdate() { updateButton.hidden = !registration.waiting; }
+    function offerUpdate() { updateButton.hidden = !(navigator.serviceWorker.controller && registration.waiting); }
     offerUpdate();
     registration.addEventListener('updatefound', () => {
       const worker = registration.installing;
       worker?.addEventListener('statechange', () => {
-        if (worker.state === 'installed') offerUpdate();
+        if (worker.state === 'installed' || worker.state === 'activated') offerUpdate();
         if (worker.state === 'redundant' && !navigator.serviceWorker.controller) status.textContent = 'ยังไม่พร้อมออฟไลน์ ลองเปิดใหม่เมื่อมีเน็ต';
       });
     });
