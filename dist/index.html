@@ -23,6 +23,30 @@
           <button id="add" class="add-button" type="button"><span>+</span> เพิ่มคนในบิล</button>
         </section>
         <section class="card" aria-labelledby="extras-heading"><div class="section-head"><div><h2 id="extras-heading">ค่าส่ง & ส่วนลด</h2><p>ยอดรวมของทั้งออเดอร์</p></div><span class="mini-icon" aria-hidden="true">฿</span></div><div class="extras"><label for="delivery">ค่าส่ง<div class="money-input"><input id="delivery" inputmode="decimal" type="text" maxlength="12" placeholder="0.00" autocomplete="off"><span>฿</span></div></label><label for="discount">ส่วนลดรวม<div class="money-input discount-input"><input id="discount" inputmode="decimal" type="text" maxlength="12" placeholder="0.00" autocomplete="off"><span>฿</span></div></label></div><p class="hint">รวมคูปอง ส่วนลดร้านค้า และส่วนลดค่าส่งไว้ช่องเดียว</p></section>
+        <section class="card calculator-card" aria-labelledby="calc-heading">
+          <div class="section-head"><div><h2 id="calc-heading">เครื่องคิดเลขส่วนลด</h2><p>คิดให้เสร็จ แล้วนำไปใช้กับบิลนี้</p></div><span class="mini-icon" aria-hidden="true">=</span></div>
+          <label for="calc-expression" class="calc-label">สูตรคำนวณ</label>
+          <input id="calc-expression" type="text" inputmode="decimal" maxlength="160" autocomplete="off" spellcheck="false" placeholder="แตะตัวเลขด้านล่าง หรือพิมพ์สูตร" aria-describedby="calc-help calc-message">
+          <div class="calc-answer"><span>ผลลัพธ์ (บาท)</span><output id="calc-result" for="calc-expression" aria-live="polite">—</output></div>
+          <p id="calc-message" class="calc-message" role="status"></p>
+          <div id="calc-keys" class="calc-keys" role="group" aria-label="แป้นเครื่องคิดเลข">
+            <button type="button" data-key="clear" class="calc-utility" aria-label="ล้างสูตร">C</button>
+            <button type="button" data-key="backspace" class="calc-utility" aria-label="ลบตัวท้าย">⌫</button>
+            <button type="button" data-key="%" class="calc-operator" aria-label="เปอร์เซ็นต์">%</button>
+            <button type="button" data-key="÷" class="calc-operator" aria-label="หาร">÷</button>
+            <button type="button" data-key="7">7</button><button type="button" data-key="8">8</button><button type="button" data-key="9">9</button>
+            <button type="button" data-key="×" class="calc-operator" aria-label="คูณ">×</button>
+            <button type="button" data-key="4">4</button><button type="button" data-key="5">5</button><button type="button" data-key="6">6</button>
+            <button type="button" data-key="−" class="calc-operator" aria-label="ลบ">−</button>
+            <button type="button" data-key="1">1</button><button type="button" data-key="2">2</button><button type="button" data-key="3">3</button>
+            <button type="button" data-key="+" class="calc-operator" aria-label="บวก">+</button>
+            <button type="button" data-key="0">0</button><button type="button" data-key="." aria-label="จุดทศนิยม">.</button>
+            <button type="button" data-key="=" class="calc-equals" aria-label="คำนวณ">=</button>
+          </div>
+          <p id="calc-help" class="calc-help">คูณ/หารก่อนบวก/ลบ · % หมายถึงหารด้วย 100<br>ผลลัพธ์ปัดเป็น 2 ตำแหน่งเมื่อใช้เป็นส่วนลด</p>
+          <button id="calc-apply" type="button" class="primary-button" disabled>ใช้ผลลัพธ์เป็นส่วนลดรวม</button>
+          <p class="calc-help calc-footnote">แทนยอดในช่องส่วนลดรวมเมื่อกดปุ่มนี้</p>
+        </section>
         <div class="method"><span class="info-icon" aria-hidden="true">i</span><div><strong>แบ่งตามยอดที่สั่ง ยุติธรรมกับทุกคน</strong><p>ยอดจ่าย = ราคาของคนนั้น ÷ ค่าสินค้ารวม × ยอดสุทธิ<br>ค่าส่งและส่วนลดจึงถูกแบ่งตามสัดส่วนเดียวกัน</p></div></div>
         <div class="editor-footer"><span id="save-status">บันทึกในเครื่องนี้อัตโนมัติ</span><button id="reset" class="text-button muted" type="button">เริ่มบิลใหม่</button></div>
       </div>

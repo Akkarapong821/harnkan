@@ -1,4 +1,5 @@
 import { calculate } from './calculator.js';
+import { setupDiscountPad } from './discount-pad.js';
 const $ = id => document.getElementById(id);
 const storageKey = 'harnkan-bill-v1';
 const newBill = () => ({ people: [{ name: '', amount: '' }, { name: '', amount: '' }], delivery: '', discount: '' });
@@ -48,12 +49,18 @@ $('add').addEventListener('click', () => { if (state.people.length >= 100) retur
 let pendingAction;
 function confirmReplace(title, action) { $('dialog-title').textContent = title; pendingAction = action; $('confirm').showModal(); }
 $('confirm').addEventListener('close', () => { if ($('confirm').returnValue === 'confirm') pendingAction?.(); pendingAction = null; });
-$('reset').addEventListener('click', () => confirmReplace('เริ่มบิลใหม่?', () => { state = newBill(); render(); persist(); $('people').querySelector('input').focus(); }));
+$('reset').addEventListener('click', () => confirmReplace('เริ่มบิลใหม่?', () => { state = newBill(); resetDiscountPad(); render(); persist(); $('people').querySelector('input').focus(); }));
 let toastTimer;
 function toast(text) { $('toast').textContent = text; $('toast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').hidden = true, 3000); }
 $('copy').addEventListener('click', async () => {
   if (!latest) return;
   const text = ['สรุปบิล · หารกัน', ...latest.shares.map((share, i) => `${nameOf(i)}: ${money(share.payable)} บาท`), `รวม: ${money(latest.total)} บาท`, '', `ค่าสินค้า ${money(latest.subtotal)} + ค่าส่ง ${money(latest.shipping)} − ส่วนลด ${money(latest.savings)} บาท`, 'แบ่งยอดสุทธิตามสัดส่วนราคาสินค้าของแต่ละคน'].join('\n');
   try { await navigator.clipboard.writeText(text); toast('คัดลอกแล้ว ส่งในกลุ่มได้เลย'); } catch { $('copy-text').value = text; $('copy-dialog').showModal(); $('copy-text').focus(); $('copy-text').select(); }
+});
+const resetDiscountPad = setupDiscountPad(value => {
+  state.discount = value;
+  $('discount').value = value;
+  changed();
+  toast(`ใช้ส่วนลด ${money(Math.round(Number(value) * 100))} บาทแล้ว`);
 });
 render();
