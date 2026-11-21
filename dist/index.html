@@ -7,7 +7,7 @@
   <meta name="description" content="หารบิลตามที่แต่ละคนสั่ง รวมค่าส่งและส่วนลด คำนวณยอดจ่ายรายคนให้ตรงกับยอดบิลทุกสตางค์">
   <title>หารกัน — บิลเดียว เคลียร์ได้ทุกคน</title>
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style.css?v=20261121-3">
   <script type="module" src="./app.js"></script>
 </head>
 <body>
@@ -24,7 +24,7 @@
         </section>
         <section class="card" aria-labelledby="extras-heading"><div class="section-head"><div><h2 id="extras-heading">ค่าส่ง & ส่วนลด</h2><p>ยอดรวมของทั้งออเดอร์</p></div><span class="mini-icon" aria-hidden="true">฿</span></div><div class="extras"><label for="delivery">ค่าส่ง<div class="money-input"><input id="delivery" inputmode="decimal" type="text" maxlength="12" placeholder="0.00" autocomplete="off"><span>฿</span></div></label><label for="discount">ส่วนลดรวม<div class="money-input discount-input"><input id="discount" inputmode="decimal" type="text" maxlength="12" placeholder="0.00" autocomplete="off"><span>฿</span></div></label></div><p class="hint">รวมคูปอง ส่วนลดร้านค้า และส่วนลดค่าส่งไว้ช่องเดียว</p></section>
         <details class="card calculator-card" aria-labelledby="calc-heading">
-          <summary class="calculator-toggle"><div><h2 id="calc-heading">เครื่องคิดเลขส่วนลด</h2><p>คิดให้เสร็จ แล้วนำไปใช้กับบิลนี้</p></div><svg class="calc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <summary class="calculator-toggle"><div><h2 id="calc-heading">เครื่องคิดเลขส่วนลด</h2><p>คิดให้เสร็จ แล้วนำไปใช้กับบิลนี้</p></div><svg class="calc-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
           <div class="calculator-body">
           <label for="calc-expression" class="calc-label">สูตรคำนวณ</label>
           <input id="calc-expression" type="text" inputmode="decimal" maxlength="160" autocomplete="off" spellcheck="false" placeholder="แตะตัวเลขด้านล่าง หรือพิมพ์สูตร" aria-describedby="calc-help calc-message">
